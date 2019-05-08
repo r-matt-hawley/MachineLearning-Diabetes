@@ -29,6 +29,7 @@ def make_authorization_url():
                 "duration": "temporary",
                 "score": "identity"}
 
+    import urllib
     url = "https://api.dexcom.com/v2/oauth2/login?" + urllib.urlencode(params)
     return url
 
