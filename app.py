@@ -5,6 +5,7 @@ from flask import abort, request, render_template
 import requests
 import requests.auth
 import urllib
+from urllib import urlencode
 
 #client variables
 CLIENT_ID = "52QRYDErEdzcipF5eAqnqgJYZZ1xJHtM"
@@ -27,8 +28,8 @@ def make_authorization_url():
                 "redirect_uri": REDIRECT_URI,
                 "duration": "temporary",
                 "score": "identity"}
-    import urllib
-    url = "https://api.dexcom.com/v2/oauth2/login?" + urllib.urlencode(params)
+
+    url = "https://api.dexcom.com/v2/oauth2/login?" + urlencode(params)
     return url
 
 @app.route('/login')
