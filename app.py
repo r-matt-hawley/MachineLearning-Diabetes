@@ -4,6 +4,7 @@ from uuid import uuid4
 from flask import abort, request, render_template
 import requests
 import requests.auth
+import urllib
 
 #client variables
 CLIENT_ID = "52QRYDErEdzcipF5eAqnqgJYZZ1xJHtM"
@@ -11,11 +12,6 @@ CLIENT_SECRET = "qxxnWnXE1q00sk9c"
 REDIRECT_URI = "https://t1dhighlow.herokuapp.com/login/index.html"
 
 app = Flask(__name__, template_folder='templates')
-
-@app.route('/')
-def home():
-    text = '<a href="%s">enter authorization credentials</a>'
-    return text % make_authorization_url
 
 def make_authorization_url():
     state = str(uuid4())
@@ -26,9 +22,14 @@ def make_authorization_url():
                 "redirect_uri": REDIRECT_URI,
                 "duration": "temporary",
                 "score": "identity"}
-    import urllib
+
     url = "https://api.dexcom.com/v2/oauth2/login?" + urllib.urlencode(params)
     return url
+
+@app.route('/')
+def home():
+    text = '<a href="%s">enter authorization credentials</a>'
+    return text % make_authorization_url
 
 @app.route('/login')
 def login():
