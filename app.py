@@ -59,7 +59,7 @@ def get_token(code):
 
 def data_pull(access_token):
     headers = {"Authorization": "bearer" + access_token}
-    #response = requests.get
+    response = requests.get("GET", "https://api.dexcom/com/v2/users/self/egvs?startDate=2017-01-01T00:00:00&endDate=2019-03-01T00:00:00", headers)
 
 if __name__ == '__main__':
 
