@@ -4,8 +4,6 @@ from uuid import uuid4
 from flask import abort, request, render_template
 import requests
 import requests.auth
-import urllib
-import urllib.urlencode
 
 #client variables
 CLIENT_ID = "52QRYDErEdzcipF5eAqnqgJYZZ1xJHtM"
