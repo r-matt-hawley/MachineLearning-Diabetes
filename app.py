@@ -13,6 +13,11 @@ REDIRECT_URI = "https://t1dhighlow.herokuapp.com/login/index.html"
 
 app = Flask(__name__, template_folder='templates')
 
+@app.route('/')
+def home():
+    text = '<a href="%s">enter authorization credentials</a>'
+    return text % make_authorization_url()
+
 def make_authorization_url():
     state = str(uuid4())
     save_created_state(state)
@@ -25,11 +30,6 @@ def make_authorization_url():
 
     url = "https://api.dexcom.com/v2/oauth2/login?" + urllib.urlencode(params)
     return url
-
-@app.route('/')
-def home():
-    text = '<a href="%s">enter authorization credentials</a>'
-    return text % make_authorization_url
 
 @app.route('/login')
 def login():
