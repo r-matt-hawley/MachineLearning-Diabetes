@@ -15,17 +15,17 @@ app = Flask(__name__, template_folder='templates')
 @app.route('/')
 def home():
     text = '<a href="%s">enter authorization credentials</a>'
-    return text % make_authorization_url
+    return text % make_auth_url
 
-def make_authorization_url
+def make_auth_url
     state = str(uuid4())
     save_created_state(state)
     params = {"client_id": CLIENT_ID,
-              "response_type": "code",
-              "state": state,
-              "redirect_uri": REDIRECT_URI,
-              "duration": "temporary",
-              "score": "identity"}
+                "response_type": "code",
+                "state": state,
+                "redirect_uri": REDIRECT_URI,
+                "duration": "temporary",
+                "score": "identity"}
     import urllib
     url = "https://api.dexcom.com/v2/oauth2/login?" + urllib.urlencode(params)
     return url
