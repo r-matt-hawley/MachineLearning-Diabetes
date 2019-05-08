@@ -8,7 +8,7 @@ import requests.auth
 #client variables
 CLIENT_ID = "52QRYDErEdzcipF5eAqnqgJYZZ1xJHtM"
 CLIENT_SECRET = "qxxnWnXE1q00sk9c"
-REDIRECT_URI = "https://ourappname.herokuapp.com/login/index.html"
+REDIRECT_URI = "https://t1dhighlow.herokuapp.com/login/index.html"
 
 app = Flask(__name__, template_folder='templates')
 
