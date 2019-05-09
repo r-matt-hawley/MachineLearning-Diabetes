@@ -3,6 +3,8 @@ from flask import Flask
 from uuid import uuid4
 from flask import abort, request, render_template
 import requests
+import urllib
+import random
 import requests.auth
 
 #client variables
@@ -27,7 +29,6 @@ def make_authorization_url():
                 "duration": "temporary",
                 "score": "identity"}
 
-    import urllib
     url = "https://api.dexcom.com/v2/oauth2/login?" + urllib.urlencode(params)
     return url
 
@@ -38,7 +39,7 @@ def login():
         return "We ran into an issue with your login: " + error
 
     state = request.args.get('state', '')
-    if not is_valit_state(state):
+    if not is_valid_state(state):
         abort(403)
     code = request.args.get('code')
 
