@@ -11,7 +11,7 @@ import requests.auth
 #client variables
 CLIENT_ID = "52QRYDErEdzcipF5eAqnqgJYZZ1xJHtM"
 CLIENT_SECRET = "qxxnWnXE1q00sk9c"
-REDIRECT_URI = "https://t1dhighlow.herokuapp.com/login/index.html"
+REDIRECT_URI = "https://t1dhighlow.herokuapp.com/login"
 
 app = Flask(__name__, template_folder='templates')
 
@@ -19,7 +19,7 @@ app = Flask(__name__, template_folder='templates')
 def home():
     text = '<a href="%s">enter authorization credentials</a>'
     auth_url = make_authorization_url()
-    hashmarks = "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    hashmarks = "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
     print(hashmarks)
     print(auth_url)
     print(hashmarks)
