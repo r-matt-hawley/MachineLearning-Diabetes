@@ -18,16 +18,11 @@ app = Flask(__name__, template_folder='templates')
 @app.route('/')
 def home():
     text = '<a href="%s">enter authorization credentials</a>'
-    auth_url = make_authorization_url()
-    hashmarks = "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
-    print(hashmarks)
-    print(auth_url)
-    print(hashmarks)
     return text % make_authorization_url()
 
 def make_authorization_url():
     state = str(uuid4())
-    #save_created_state(state)
+    save_created_state(state)
     params = {"client_id": CLIENT_ID,
                 "response_type": "code",
                 "state": state,
@@ -37,6 +32,12 @@ def make_authorization_url():
 
     url = "https://api.dexcom.com/v2/oauth2/login?" + urlencode(params)
     return url
+
+def save_created_state(state):
+	pass
+
+def is_valid_state(state):
+	return True
 
 @app.route('/login')
 def login():
@@ -52,7 +53,6 @@ def login():
     return "got an access token! %s" % get_token(code)
 
     #return render_template "index.html"
-
 def get_token(code):
     client_auth = requests.auth.HTTPBasicAuth(CLIENT_ID, CLIENT_SECRET)
     post_data = {"grant_type": "authorization_code",
