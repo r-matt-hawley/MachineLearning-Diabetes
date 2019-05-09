@@ -28,7 +28,7 @@ def make_authorization_url():
                 "state": state,
                 "redirect_uri": REDIRECT_URI,
                 "duration": "temporary",
-                "scope": "identity"}
+                "scope": "offline_access"}
 
     url = "https://api.dexcom.com/v2/oauth2/login?" + urlencode(params)
     return url
