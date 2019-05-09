@@ -22,7 +22,7 @@ def home():
 
 def make_authorization_url():
     state = str(uuid4())
-    save_created_state(state)
+    #save_created_state(state)
     params = {"client_id": CLIENT_ID,
                 "response_type": "code",
                 "state": state,
