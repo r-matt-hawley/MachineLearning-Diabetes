@@ -49,7 +49,7 @@ def login():
     if not is_valid_state(state):
         abort(403)
     code = request.args.get('code')
-
+    access_token = get_token(code)
     return "got an access token! %s" % get_data(access_token)
 
     #return render_template "index.html"
