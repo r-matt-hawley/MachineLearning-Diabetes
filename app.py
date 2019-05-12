@@ -50,7 +50,7 @@ def login():
         abort(403)
     code = request.args.get('code')
 
-    return "got an access token! %s" % data_pull(access_token)
+    return "got an access token! %s" % get_data(access_token)
 
     #return render_template "index.html"
 def get_token(code):
