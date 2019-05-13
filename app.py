@@ -18,7 +18,7 @@ app = Flask(__name__, template_folder='templates')
 @app.route('/')
 def home():
     #text = '<a href="%s">enter authorization credentials</a>'
-    return render_template('index.html')
+    return render_template('index.html', url=make_authorization_url())
 
 def make_authorization_url():
     state = str(uuid4())
