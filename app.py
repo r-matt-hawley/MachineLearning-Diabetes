@@ -54,7 +54,10 @@ def get_token(code):
     post_data = {"grant_type": "authorization_code",
                  "code": code,
                  "redirect_uri": REDIRECT_URI}
-    headers = base_headers()
+    headers = {
+            'content-type': "application/x-www-form-urlencoded",
+            'cache-control': "no-cache"
+    }
     response = requests.post("https://api.dexcom.com/v2/oauth2/token",
                              auth=client_auth,
                              headers=headers,
