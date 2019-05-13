@@ -44,8 +44,7 @@ def login():
         abort(403)
     code = request.args.get('code')
     access_token = get_token(code)
-    # Note: In most cases, you'll want to store the access token, in, say,
-    # a session for use in other parts of your web app.
+
     return "Your token is: %s" % get_readings(access_token)
 
 def get_token(code):
@@ -62,7 +61,7 @@ def get_token(code):
                              headers=headers,
                              data=post_data)
     token_json = response.json()
-    return token_json["access_token"]
+    return token_json
 
 
 def get_readings(access_token):
