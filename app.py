@@ -66,6 +66,7 @@ def get_token(code):
     return token_json["access_token"]
 
 def get_data(access_token):
+    code = request.args.get('code')
     access_token = get_token(code)
     headers = {
         'authorization': "Bearer" + access_token}
