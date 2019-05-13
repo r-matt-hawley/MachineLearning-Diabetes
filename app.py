@@ -66,8 +66,8 @@ def get_token(code):
     return token_json["access_token"]
 
 def get_data(access_token):
-    headers = base_headers()
-    headers.update({"Authorization": "Bearer" + access_token})
+    headers = {
+        'authorization': "Bearer" + get_token(code)}
     response = requests.get("https://api.dexcom.com/v2/users/self/egvs?startDate=?startDate=2017-01-01T00:00:00&endDate=2019-05-01T00:00:00", headers=headers)
     return response.json()
 
