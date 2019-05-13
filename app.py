@@ -50,7 +50,7 @@ def login():
         abort(403)
     code = request.args.get('code')
     access_token = get_token(code)
-    return "got an access token! %s" % get_data(access_token)
+    return "got an access token! %s" % get_token(access_token)
 
     #return render_template "index.html"
 def get_token(code):
@@ -66,7 +66,7 @@ def get_token(code):
     return token_json["access_token"]
 
 def get_data(access_token):
-    headers = {"Authorization": "bearer" + access_token}
+    headers = {"Authorization": "Bearer" + access_token}
     response = requests.get("https://api.dexcom.com/v2/users/self/egvs?startDate=?startDate=2017-01-01T00:00:00&endDate=2019-05-01T00:00:00", headers=headers)
     return response.json()
 
