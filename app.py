@@ -13,8 +13,7 @@ app = Flask(__name__, template_folder='templates')
 
 @app.route('/')
 def homepage():
-    text = '<a href="%s">Click Here To Login</a>'
-    return text % make_authorization_url()
+    return render_template('index.html', url=make_authorization_url())
 
 
 def make_authorization_url():
