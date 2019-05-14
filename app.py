@@ -40,7 +40,6 @@ def login():
         return "Error: " + error
     state = request.args.get('state', '')
     if not is_valid_state(state):
-        # Uh-oh, this request wasn't started by us!
         abort(403)
     code = request.args.get('code')
     access_token = get_token(code)
