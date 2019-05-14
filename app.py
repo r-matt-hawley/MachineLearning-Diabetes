@@ -45,7 +45,7 @@ def login():
     code = request.args.get('code')
     access_token = get_token(code)
 
-    return "Your token is: %s" % get_readings(access_token)
+    return "Your token is: %s" % get_token(code)
 
 def get_token(code):
     client_auth = requests.auth.HTTPBasicAuth(CLIENT_ID, CLIENT_SECRET)
