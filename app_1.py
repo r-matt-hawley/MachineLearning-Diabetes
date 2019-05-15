@@ -63,7 +63,7 @@ def get_token(code):
                              data=post_data)
 
     token_json = response.json()
-    return token_json["access_token"]
+    return token_json
 
 def get_data(access_token):
     headers = {

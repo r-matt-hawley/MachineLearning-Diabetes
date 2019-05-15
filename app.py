@@ -15,7 +15,6 @@ app = Flask(__name__, template_folder='templates')
 def homepage():
     return render_template('index.html', url=make_authorization_url())
 
-
 def make_authorization_url():
     state = str(uuid4())
     save_created_state(state)
@@ -57,11 +56,9 @@ def get_token(code):
     }
     response = requests.post("https://api.dexcom.com/v2/oauth2/token",
                              auth=client_auth,
-                             headers=headers,
                              data=post_data)
     token_json = response.json()
     return token_json
-
 
 #def get_readings(access_token):
 #    headers = {'authorization': "Bearer" + access_token}
