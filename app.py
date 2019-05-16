@@ -63,10 +63,23 @@ def get_token(code):
     return token_json
 
 def get_readings(access_token):
-    headers = {'authorization': "Bearer" + access_token}
-    response = requests.get("https://api.dexcom.com/v2/users/self/egvs?startDate=?startDate=2017-01-01T00:00:00&endDate=2019-05-01T00:00:00", headers=headers)
-    data_json = response.json()
-    return data_json
+#    headers = {'authorization': "Bearer" + access_token}
+#    response = requests.get("https://api.dexcom.com/v2/users/self/egvs?startDate=?startDate=2017-01-01T00:00:00&endDate=2019-05-01T00:00:00", headers=headers)
+#    data_json = response.json()
+#    return data_json
+
+    import http.client
+    conn = http.client.HTTPSConnection("api.dexcom.com")
+
+    headers = {'authorization': "Bearer " + access_token}
+
+    conn.request("GET", "/v2/users/self/egvs?startDate=2017-06-16T15:30:00&endDate=2017-06-16T15:45:00", headers=headers)
+
+    res = conn.getresponse()
+    data = res.read()
+
+    print(data.decode("utf-8"))
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=65010)
