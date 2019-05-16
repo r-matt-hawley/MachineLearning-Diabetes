@@ -43,20 +43,22 @@ def login():
     code = request.args.get('code')
     access_token = get_token(code)
 
-    return "Your token is: %s" % get_token(code)
+    return return "got a code! %s" % code
 
 def get_token(code):
-    client_auth = requests.auth.HTTPBasicAuth(CLIENT_ID, CLIENT_SECRET)
-    post_data = {"grant_type": "authorization_code",
-                 "code": code,
-                 "redirect_uri": REDIRECT_URI}
+    payload = {'client_secret': CLIENT_SECRET,
+               'client_id': CLIENT_ID,
+               'code':code,
+               'grant_type': authorization_code,
+               'redirect_uri': REDIRECT_URI}"
     headers = {
             'content-type': "application/x-www-form-urlencoded",
             'cache-control': "no-cache"
     }
+
     response = requests.post("https://api.dexcom.com/v2/oauth2/token",
-                             auth=client_auth,
-                             data=post_data)
+                             params=payload,
+                             headers=headers)
     token_json = response.json()
     return token_json
 
