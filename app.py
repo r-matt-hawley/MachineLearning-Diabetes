@@ -71,7 +71,7 @@ def get_readings(access_token):
     import http.client
     conn = http.client.HTTPSConnection("api.dexcom.com")
 
-    headers = {'authorization': "Bearer " + access_token}
+    headers = "Bearer " + access_token
 
     conn.request("GET", "/v2/users/self/egvs?startDate=2017-06-16T15:30:00&endDate=2017-06-16T15:45:00", headers=headers)
 
