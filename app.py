@@ -56,8 +56,7 @@ def get_token(code):
 #            'cache-control': "no-cache"}
 
     response = requests.post("https://api.dexcom.com/v2/oauth2/token",
-                             params=payload,
-                             headers=headers)
+                             params=payload)
     token_json = response.json()
     return token_json
 
