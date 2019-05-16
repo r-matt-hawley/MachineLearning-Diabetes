@@ -43,7 +43,7 @@ def login():
     code = request.args.get('code')
     access_token = get_token(code)
 
-    return "got a token! %s" % code
+    return get_token(code)
 
 def get_token(code):
     payload = {'client_secret': CLIENT_SECRET,
@@ -84,6 +84,9 @@ def get_readings(access_token):
 
     print(data.decode("utf-8"))
 
+@app.route('/login')
+def login():
+    return render_template('plots.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=65010)
