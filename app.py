@@ -71,7 +71,10 @@ def get_readings(access_token):
     import http.client
     conn = http.client.HTTPSConnection("api.dexcom.com")
     import json
-
+    sep = "_______________________________________________________"
+    print(sep)
+    print(access_token)
+    print(sep)
     headers = json.dumps({'authorization': "Bearer " + access_token})
 #    headers = {'authorization': "Bearer " + access_token}
 
