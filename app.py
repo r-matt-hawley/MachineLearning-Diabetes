@@ -75,7 +75,7 @@ def get_readings(access_token):
     print(sep)
     print(access_token)
     print(sep)
-    headers = json.dumps({'authorization': "Bearer " + access_token[0]})
+    headers = {'authorization': "Bearer " + access_token[list(access_token.keys())[0]]}
 #    headers = {'authorization': "Bearer " + access_token}
 
     conn.request("GET", "/v2/users/self/egvs?startDate=2017-06-16T15:30:00&endDate=2017-06-16T15:45:00", headers=headers)
@@ -84,6 +84,10 @@ def get_readings(access_token):
     data = res.read()
 
     print(data.decode("utf-8"))
+
+@app.route('/plots')
+    def plots():
+        return render_template('plots.html')
 
 
 if __name__ == '__main__':
