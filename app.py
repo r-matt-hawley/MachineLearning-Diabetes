@@ -43,7 +43,7 @@ def login():
     code = request.args.get('code')
     access_token = get_token(code)
 
-    return return "got a token! %s" % get_token_(code)
+    return "got a token! %s" % get_token(code)
 
 def get_token(code):
     payload = {'client_secret': CLIENT_SECRET,
