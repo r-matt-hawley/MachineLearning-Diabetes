@@ -50,11 +50,10 @@ def get_token(code):
                'client_id': CLIENT_ID,
                'code':code,
                'grant_type': authorization_code,
-               'redirect_uri': REDIRECT_URI}"
+               'redirect_uri': REDIRECT_URI}
     headers = {
             'content-type': "application/x-www-form-urlencoded",
-            'cache-control': "no-cache"
-    }
+            'cache-control': "no-cache"}
 
     response = requests.post("https://api.dexcom.com/v2/oauth2/token",
                              params=payload,
