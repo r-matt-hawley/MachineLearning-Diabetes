@@ -48,7 +48,7 @@ def login():
 def get_token(code):
     payload = {'client_secret': CLIENT_SECRET,
                'client_id': CLIENT_ID,
-               'code':code,
+               'code': code,
                'grant_type': "authorization_code",
                'redirect_uri': REDIRECT_URI}
     headers = {
