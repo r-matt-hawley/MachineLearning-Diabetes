@@ -72,7 +72,7 @@ def get_data(access_token):
     headers = {
     'authorization': "Bearer " + access_token[list(access_token.keys())[0]]}
 
-    conn.request("GET", "/v2/users/self/egvs?startDate=2017-06-16T15:30:00&endDate=2017-06-16T15:45:00", headers=headers)
+    conn.request("GET", "/v2/users/self/egvs?startDate=2017-01-01T00:00:00&endDate=2019-05-10T00:00:00", headers=headers)
 
     res = conn.getresponse()
     data = res.read()
