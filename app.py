@@ -81,7 +81,7 @@ def get_data(access_token):
     print(sep)
     print(access_token)
     print(sep)
-    return print(data.decode("utf-8"))
+    return print(data)
 
 @app.route('/plots')
 def plots():
