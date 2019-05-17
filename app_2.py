@@ -61,28 +61,23 @@ def get_token(code):
     token_json = response.json()
     return token_json
 
-def get_readings(access_token):
-#    headers = {'authorization': "Bearer" + access_token}
-#    response = requests.get("https://api.dexcom.com/v2/users/self/egvs?startDate=?startDate=2017-01-01T00:00:00&endDate=2019-05-01T00:00:00", headers=headers)
-#    data_json = response.json()
-#    return data_json
-
+def get_data(access_token):
     import http.client
+
     conn = http.client.HTTPSConnection("api.dexcom.com")
-    import json
+
+    headers = {
+    'authorization': "Bearer " + access_token[list(access_token.keys())[0]]}
+
+    conn.request("GET", "/v2/users/self/egvs?startDate=2019-01-01T00:00:00&endDate=2019-03-01T00:00:00", headers=headers)
+
+    res = conn.getresponse()
+    data = res.read()
     sep = "_______________________________________________________"
     print(sep)
     print(access_token)
     print(sep)
-    headers = {'authorization': "Bearer " + access_token[list(access_token.keys())[0]]}
-#    headers = {'authorization': "Bearer " + access_token}
-
-    conn.request("GET", "/v2/users/self/egvs?startDate=2017-06-16T15:30:00&endDate=2017-06-16T15:45:00", headers=headers)
-
-    res = conn.getresponse()
-    data = res.read()
-
-    print(data.decode("utf-8"))
+    return print(data.decode("utf-8"))
 
 @app.route('/login')
 def login():
