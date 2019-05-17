@@ -51,7 +51,7 @@ def login():
         abort(403)
     authorization_code = request.args.get('code')
     access_token = get_token(authorization_code)
-    return response.json()
+    return get_data(access_token)
 
 def get_token(code):
     client_auth = requests.auth.HTTPBasicAuth(CLIENT_ID, CLIENT_SECRET)
