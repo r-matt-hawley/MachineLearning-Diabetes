@@ -66,9 +66,22 @@ def get_token(code):
     return token_json
 
 def get_data(access_token):
-    headers = {'authorization': "Bearer" + access_token[list(access_token.keys())[0]]}
-    response = requests.get("https://api.dexcom.com/v2/users/self/egvs?startDate=?startDate=2019-01-01T00:00:00&endDate=2019-03-01T00:00:00", headers=headers)
-    return json.dumps(response.json())
+    import http.client
+
+    conn = http.client.HTTPSConnection("api.dexcom.com")
+
+    headers = {
+    'authorization': "Bearer " + access_token[list(access_token.keys())[0]]}
+
+    conn.request("GET", "/v2/users/self/egvs?startDate=2019-01-01T00:00:00&endDate=2019-03-01T00:00:00", headers=headers)
+
+    res = conn.getresponse()
+    data = res.read()
+    sep = "_______________________________________________________"
+    print(sep)
+    print(access_token)
+    print(sep)
+    return print(data.decode("utf-8"))
 
 @app.route('/plots')
 def plots():
