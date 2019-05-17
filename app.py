@@ -76,7 +76,10 @@ def get_data(access_token):
 
     res = conn.getresponse()
     data = res.read()
-
+    sep = "_______________________________________________________"
+    print(sep)
+    print(access_token)
+    print(sep)
     return print(data.decode("utf-8"))
 
 @app.route('/plots')
