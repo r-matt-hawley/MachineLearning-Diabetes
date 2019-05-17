@@ -3,6 +3,7 @@ from flask import Flask
 from uuid import uuid4
 from flask import abort, request, render_template
 import requests
+import json
 import urllib
 from urllib.parse import urlencode
 import random
@@ -50,7 +51,7 @@ def login():
         abort(403)
     authorization_code = request.args.get('code')
     access_token = get_token(authorization_code)
-    return "got an access token! %s" % get_data(access_token)
+    return response.json()
 
 def get_token(code):
     client_auth = requests.auth.HTTPBasicAuth(CLIENT_ID, CLIENT_SECRET)
@@ -66,7 +67,7 @@ def get_token(code):
 
 def get_data(access_token):
     headers = {'authorization': "Bearer" + access_token[list(access_token.keys())[0]]}
-    response = requests.get("https://api.dexcom.com/v2/users/self/egvs?startDate=?startDate=2017-01-01T00:00:00&endDate=2019-05-01T00:00:00", headers=headers)
+    response = requests.get("https://api.dexcom.com/v2/users/self/egvs?startDate=?startDate=2019-01-01T00:00:00&endDate=2019-03-01T00:00:00", headers=headers)
     return response.json()
 
 @app.route('/plots')
