@@ -12,14 +12,14 @@ import requests.auth
 #client variables
 CLIENT_ID = "52QRYDErEdzcipF5eAqnqgJYZZ1xJHtM"
 CLIENT_SECRET = "qxxnWnXE1q00sk9c"
-REDIRECT_URI = "https://t1dhighlow.herokuapp.com/login"
+REDIRECT_URI = "https://t1dhighlow.herokuapp.com/plots"
 
 app = Flask(__name__, template_folder='templates')
 
 @app.route('/')
 def home():
     #text = '<a href="%s">enter authorization credentials</a>'
-    return render_template('index.html', url='/plots')
+    return render_template('index.html', url=make_authorization_url())
 
 def make_authorization_url():
     state = str(uuid4())
@@ -79,7 +79,7 @@ def get_data(access_token):
     print(sep)
     #######################################
 
-    return me_json[['unit', 'rate']]
+    return me_json['unit'] + json.dumps(me_json["egvs"])
 
 @app.route('/plots')
 def plots():
