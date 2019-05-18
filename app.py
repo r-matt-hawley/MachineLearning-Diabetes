@@ -76,7 +76,7 @@ def get_data(access_token):
     conn.request("GET", "/v2/users/self/egvs?startDate=2019-05-01T00:00:00&endDate=2019-05-11T00:00:00", headers=headers)
 
     res = conn.getresponse()
-    data = res.read()
+    data = res.json()
     sep = "_______________________________________________________"
     print(sep)
     print(access_token)
