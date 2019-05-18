@@ -72,18 +72,23 @@ def get_data(access_token):
 
     headers = {
     'authorization': "Bearer " + access_token[list(access_token.keys())[0]]}
+    response = requests.get("https://api.dexcom.com/v2/users/self/egvs?startDate=2019-05-01T00:00:00&endDate=2019-05-11T00:00:00", headers=headers)
+    me_json = response.json()
+    #######################################
+    print(sep)
+    print(access_token)
+    print(sep)
+    print(me_json)
+    print(sep)
+    #######################################
 
-    conn.request("GET", "/v2/users/self/egvs?startDate=2019-05-01T00:00:00&endDate=2019-05-11T00:00:00", headers=headers)
-
-    res = conn.getresponse()
-    data = res.json()
+    return me_json['name']
     sep = "_______________________________________________________"
     print(sep)
     print(access_token)
     print(sep)
     print(data)
     print(sep)
-    return json.dumps(data)
 
 @app.route('/plots')
 def plots():
