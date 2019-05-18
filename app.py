@@ -81,6 +81,8 @@ def get_data(access_token):
     print(sep)
     print(access_token)
     print(sep)
+    print(data)
+    print(sep)
     return json.dumps(data)
 
 @app.route('/plots')
