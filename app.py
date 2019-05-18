@@ -79,7 +79,7 @@ def get_data(access_token):
     print(sep)
     #######################################
 
-    return json.dumps(me_json[['unit', 'rate', 'egvs']])
+    return me_json[['unit', 'rate', json.dumps('egvs')]]
 
 @app.route('/plots')
 def plots():
