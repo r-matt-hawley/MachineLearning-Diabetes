@@ -79,7 +79,7 @@ def get_data(access_token):
     print(sep)
     #######################################
 
-    return me_json
+    return me_json['egvs']
 
 @app.route('/plots')
 def plots():
