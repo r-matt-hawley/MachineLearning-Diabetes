@@ -66,15 +66,12 @@ def get_token(code):
     return token_json
 
 def get_data(access_token):
-    import http.client
-
-    conn = http.client.HTTPSConnection("api.dexcom.com")
-
     headers = {
     'authorization': "Bearer " + access_token[list(access_token.keys())[0]]}
     response = requests.get("https://api.dexcom.com/v2/users/self/egvs?startDate=2019-05-01T00:00:00&endDate=2019-05-11T00:00:00", headers=headers)
     me_json = response.json()
     #######################################
+    sep = "__________________________________________________________"
     print(sep)
     print(access_token)
     print(sep)
@@ -82,13 +79,7 @@ def get_data(access_token):
     print(sep)
     #######################################
 
-    return me_json['name']
-    sep = "_______________________________________________________"
-    print(sep)
-    print(access_token)
-    print(sep)
-    print(data)
-    print(sep)
+    return me_json['unit']
 
 @app.route('/plots')
 def plots():
