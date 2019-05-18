@@ -73,7 +73,7 @@ def get_data(access_token):
     headers = {
     'authorization': "Bearer " + access_token[list(access_token.keys())[0]]}
 
-    conn.request("GET", "/v2/users/self/egvs?startDate=2019-01-01T00:00:00&endDate=2019-03-01T00:00:00", headers=headers)
+    conn.request("GET", "/v2/users/self/egvs?startDate=2019-05-01T00:00:00&endDate=2019-05-11T00:00:00", headers=headers)
 
     res = conn.getresponse()
     data = res.read()
@@ -81,7 +81,7 @@ def get_data(access_token):
     print(sep)
     print(access_token)
     print(sep)
-    return print(data)
+    return json.dumps(data)
 
 @app.route('/plots')
 def plots():
