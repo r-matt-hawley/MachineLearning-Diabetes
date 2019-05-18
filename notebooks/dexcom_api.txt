@@ -1,0 +1,37 @@
+import http.client
+
+conn = http.client.HTTPSConnection("api.dexcom.com")
+
+payload = "client_secret={your_client_secret}&client_id={your_client_id}&code={your_authorization_code}&grant_type=authorization_code&redirect_uri={your_redirect_uri}"
+
+headers = {
+    'content-type': "application/x-www-form-urlencoded",
+    'cache-control': "no-cache"
+    }
+
+conn.request("POST", "/v2/oauth2/token", payload, headers)
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))
+
+
+import http.client
+
+conn = http.client.HTTPSConnection("api.dexcom.com")
+
+headers = {
+    'authorization': "Bearer {your_access_token}"
+    }
+
+conn.request("GET", "/v2/users/self/egvs?startDate=2017-06-16T15:30:00&endDate=2017-06-16T15:45:00", headers=headers)
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))
+
+
+
+'authorization': "Bearer " + access_token TypeError: must be str, not dict
